@@ -31,25 +31,35 @@
                     <div class="form-group">
                         <label for="welcome">Welcome message</label>
                         <input type="text" class="form-control" name="welcomeMessage" id="welcomeMessage"
-                               value="${welcomeMessage}"/>
+                               value="
+                               ## ${welcomeMessage}
+                               "/>
                     </div>
                     <div class="form-group">
                         <label for="reply">Reply message</label>
                         <input type="text" class="form-control" name="replyMessage" id="replyMessage"
-                               value="${replyMessage}"/>
+                               value="
+                               ## ${replyMessage}
+                               "/>
                     </div>
                     <div class="form-group">
                         <label for="imsiUpdate">IMSI update interval (ms)</label>
                         <input type="number" class="form-control" name="imsiUpdate" id="imsiUpdate"
-                               value="${imsiUpdate}"/>
+                               value="
+                               ## ${imsiUpdate}
+                               "/>
                     </div>
                     <div class="form-group">
                         <label for="smsUpdate">SMS update interval (ms)</label>
-                        <input type="number" class="form-control" name="smsUpdate" id="smsUpdate" value="${smsUpdate}"/>
+                        <input type="number" class="form-control" name="smsUpdate" id="smsUpdate" value="
+                        ## ${smsUpdate}
+                        "/>
                     </div>
                     <div class="form-group">
                         <label for="silentSms">Silent SMS interval (ms)</label>
-                        <input type="number" class="form-control" name="silentSms" id="silentSms" value="${silentSms}"/>
+                        <input type="number" class="form-control" name="silentSms" id="silentSms" value="
+                        ## ${silentSms}
+                        "/>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
