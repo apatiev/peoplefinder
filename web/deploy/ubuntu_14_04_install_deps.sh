@@ -52,7 +52,7 @@ sudo mkdir -p $PEOPLEFINDER_CONF_DIR
 sudo mkdir -p $PEOPLEFINDER_LOG_DIR
 
 # clone repository
-sudo -H -u  $USER_NAME bash -c 'git clone https://github.com/nextgis/peoplefinder.git '$HOME'/peoplefinder'
+sudo -H -u  $USER_NAME bash -c 'git clone https://github.com/apatiev/peoplefinder.git '$HOME'/peoplefinder'
 
 # install application
 sudo -H -u  $USER_NAME bash -c $HOME'/env/bin/pip install -e '$HOME'/peoplefinder/web'
