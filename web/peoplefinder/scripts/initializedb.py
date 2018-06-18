@@ -67,14 +67,16 @@ def main(argv=sys.argv):
             ),
         ])
 
-        HLRDBSession.add_all([
-            Subscriber(
-                created=datetime.datetime.fromtimestamp(time.time()),
-                updated=datetime.datetime.fromtimestamp(time.time()),
-                imsi=pf_subscriber_imsi,
-                name=pf_subscriber_name,
-                extension=pf_subscriber_extension,
-                authorized=1,
-                lac=0
-            )
-        ])
+        # TODO: fix osmocom installation
+
+        # HLRDBSession.add_all([
+        #     Subscriber(
+        #         created=datetime.datetime.fromtimestamp(time.time()),
+        #         updated=datetime.datetime.fromtimestamp(time.time()),
+        #         imsi=pf_subscriber_imsi,
+        #         name=pf_subscriber_name,
+        #         extension=pf_subscriber_extension,
+        #         authorized=1,
+        #         lac=0
+        #     )
+        # ])
