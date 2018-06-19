@@ -12,12 +12,14 @@ RUN adduser --disabled-password --gecos "" $PF_USER \
 	&& apt-get -y install python-dev \
 	&& apt-get -y install python-pip \
 	&& apt-get -y install libgeo-osm-tiles-perl \
+	&& pip install virtualenv \
 	&& pip install uwsgi \
 	&& mkdir -p $PF_CONF_DIR \
 	&& mkdir -p $PF_LOG_DIR \
 	&& mkdir -p /var/lib/osmocom/ 	# TODO: fix osmocom installation
 
 COPY . $PF_HOME_DIR
+RUN chown -R $PF_USER:$PF_USER $PF_HOME_DIR
 COPY ./web/development.example.ini $PF_CONF_DIR/config.ini
 
 RUN pip install -e $PF_HOME_DIR/web \

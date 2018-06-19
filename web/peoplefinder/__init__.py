@@ -18,8 +18,8 @@ def main(global_config, **settings):
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
 
-    engine = engine_from_config(settings, 'sqlalchemy.hlr.')
-    HLRDBSession.configure(bind=engine)
+    hlr_engine = engine_from_config(settings, 'sqlalchemy.hlr.')
+    HLRDBSession.configure(bind=hlr_engine)
 
     xmlrpc_url = 'http://%(xmlrpc.host)s:%(xmlrpc.port)s' % settings
     xmlrpc = lambda request: xmlrpclib.ServerProxy(xmlrpc_url)

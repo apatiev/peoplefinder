@@ -13,7 +13,8 @@ from pyramid.paster import (
 
 from model.hlr import (
     HLRDBSession,
-    Subscriber
+    Subscriber,
+    Base as HLRDBBase
     )
 
 from model.models import (
@@ -47,6 +48,8 @@ def main(argv=sys.argv):
 
     hlr_engine = engine_from_config(settings, 'sqlalchemy.hlr.')
     HLRDBSession.configure(bind=hlr_engine)
+    HLRDBBase.metadata.create_all(hlr_engine)
+
 
     # initial settings
     with transaction.manager:
@@ -67,16 +70,14 @@ def main(argv=sys.argv):
             ),
         ])
 
-        # TODO: fix osmocom installation
-
-        # HLRDBSession.add_all([
-        #     Subscriber(
-        #         created=datetime.datetime.fromtimestamp(time.time()),
-        #         updated=datetime.datetime.fromtimestamp(time.time()),
-        #         imsi=pf_subscriber_imsi,
-        #         name=pf_subscriber_name,
-        #         extension=pf_subscriber_extension,
-        #         authorized=1,
-        #         lac=0
-        #     )
-        # ])
+        HLRDBSession.add_all([
+            Subscriber(
+                created=datetime.datetime.fromtimestamp(time.time()),
+                updated=datetime.datetime.fromtimestamp(time.time()),
+                imsi=pf_subscriber_imsi,
+                name=pf_subscriber_name,
+                extension=pf_subscriber_extension,
+                authorized=1,
+                lac=0
+            )
+        ])
