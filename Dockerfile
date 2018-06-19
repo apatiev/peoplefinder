@@ -12,20 +12,24 @@ RUN adduser --disabled-password --gecos "" $PF_USER \
 	&& apt-get -y install python-dev \
 	&& apt-get -y install python-pip \
 	&& apt-get -y install libgeo-osm-tiles-perl \
-	&& pip install virtualenv \
 	&& pip install uwsgi \
 	&& mkdir -p $PF_CONF_DIR \
 	&& mkdir -p $PF_LOG_DIR \
-	&& mkdir -p /var/lib/osmocom/ 	# TODO: fix osmocom installation
+	&& mkdir -p /var/lib/osmocom/
 
 COPY . $PF_HOME_DIR
-RUN chown -R $PF_USER:$PF_USER $PF_HOME_DIR
 COPY ./web/development.example.ini $PF_CONF_DIR/config.ini
 
 RUN pip install -e $PF_HOME_DIR/web \
-	&& PYTHONPATH="${PYTHONPATH}:$PF_HOME_DIR" initialize_peoplefinder_db $PF_CONF_DIR/config.ini
+	&& PYTHONPATH="${PYTHONPATH}:$PF_HOME_DIR" initialize_peoplefinder_db $PF_CONF_DIR/config.ini  \
+	&& chown -R $PF_USER:$PF_USER $PF_HOME_DIR \
+	&& chown -R $PF_USER:$PF_USER $PF_CONF_DIR \
+	&& chown -R $PF_USER:$PF_USER $PF_LOG_DIR \
+	&& chown -R $PF_USER:$PF_USER /var/lib/osmocom/
 
 EXPOSE 8080
 WORKDIR $PF_HOME_DIR
+
+USER $PF_USER
 
 CMD ["uwsgi", "/etc/peoplefinder/config.ini"]
