@@ -1,0 +1,22 @@
+version: "3.6"
+
+services:
+  kannel-bearerbox:
+    build: ./docker/kannel
+    command: ["bearerbox", "/etc/kannel/kannel.conf"]
+
+  kannel-smsbox:
+    build: ./docker/kannel
+    depends_on:
+      - kannel-bearerbox
+    command: ["smsbox", "/etc/kannel/kannel.conf"]
+
+  peoplefinder:
+    build: 
+      context: .
+      dockerfile: ./docker/peoplefinder/Dockerfile
+    depends_on:
+      - kannel-bearerbox
+      - kannel-smsbox
+    ports:
+      - 8080:8080

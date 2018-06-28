@@ -18,7 +18,7 @@ RUN adduser --disabled-password --gecos "" $PF_USER \
 	&& mkdir -p /var/lib/osmocom/
 
 COPY . $PF_HOME_DIR
-COPY ./web/development.example.ini $PF_CONF_DIR/config.ini
+COPY ./docker/peoplefinder/config.ini $PF_CONF_DIR/config.ini
 
 RUN pip install -e $PF_HOME_DIR/web \
 	&& PYTHONPATH="${PYTHONPATH}:$PF_HOME_DIR" initialize_peoplefinder_db $PF_CONF_DIR/config.ini  \
