@@ -11,8 +11,6 @@
             pf.viewmodel.map = this._map;
 
             this.setInitialView();
-            L.control.scale().addTo(this._map);
-            this._map.tilesSelector._selectTileLayer(true);
         },
 
 
@@ -22,16 +20,12 @@
 
 
         buildMap: function () {
-            return L.map('map', {
-                zoomControl: false,
-                zoomValueControl: true,
-                maxZoom: 15
-            });
+            return L.extremum.map('map', '/static/contrib/extremum-maps/layers.json');
         },
 
 
         setInitialView: function () {
-            this._map.setView([59.8893, 30.4980], 9);
+            this._map.setView([59.9375, 30.3086], 9);
         }
     });
 }(jQuery, pf, L));
